@@ -15,6 +15,9 @@ namespace ModuleGroups.ViewModel
         {
             Items = new ObservableCollection<TodoItem>();
             Items.Add(new TodoItem("Group 1"));
+            Items.Add(new TodoItem("Group 2"));
+            Items.Add(new TodoItem("Group 3"));
+            Items.Add(new TodoItem("Group 4"));
         }
     }
 }

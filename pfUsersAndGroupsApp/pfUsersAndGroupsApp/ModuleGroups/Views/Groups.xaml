@@ -6,8 +6,8 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
     <Border BorderBrush="Purple" BorderThickness="2">
-        <Grid>
-            <ItemsControl Name="icTodoList">
+        <Grid x:Name="GroupViewMainGrid">
+            <ItemsControl ItemsSource="{Binding DataContext.Items, ElementName=GroupViewMainGrid}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,0,0,5">
