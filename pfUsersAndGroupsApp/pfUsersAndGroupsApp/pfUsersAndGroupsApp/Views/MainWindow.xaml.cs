@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Microsoft.Practices.Unity;
 using ModuleGroups.Views;
+using ModuleUsers.Views;
 using Prism.Regions;
 
 namespace pfUsersAndGroupsApp.Views

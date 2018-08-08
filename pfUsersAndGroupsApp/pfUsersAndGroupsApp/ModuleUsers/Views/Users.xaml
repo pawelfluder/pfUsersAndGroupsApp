@@ -1,20 +1,20 @@
-﻿<UserControl x:Class="pfUsersAndGroupsApp.Views.Users"
+﻿<UserControl x:Class="ModuleUsers.Views.Users"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:pfUsersAndGroupsApp.Views"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <Border BorderBrush="Yellow" BorderThickness="2">
-        <Grid>
-            <ItemsControl>
-                <system:String>User #1</system:String>
-                <system:String>User #2</system:String>
-                <system:String>User #3</system:String>
-                <system:String>User #4</system:String>
-                <system:String>User #5</system:String>
+        <Grid x:Name="UsersViewMainGrid">
+            <ItemsControl ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,5">
+                            <TextBlock Text="{Binding Title}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
     </Border>

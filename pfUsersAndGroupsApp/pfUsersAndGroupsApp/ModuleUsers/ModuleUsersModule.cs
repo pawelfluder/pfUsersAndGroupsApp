@@ -1,4 +1,4 @@
-﻿using pfUsersAndGroupsApp.Views;
+﻿using ModuleUsers.Views;
 using Prism.Modularity;
 using Prism.Regions;
 
