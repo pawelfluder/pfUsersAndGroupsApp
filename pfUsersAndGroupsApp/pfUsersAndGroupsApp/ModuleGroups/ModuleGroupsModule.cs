@@ -1,4 +1,4 @@
-﻿using ModuleA.Views;
+﻿using ModuleGroups.Views;
 using Prism.Modularity;
 using Prism.Regions;
 
@@ -15,7 +15,7 @@ namespace ModuleGroups
 
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
+            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(Groups));
         }
     }
 }

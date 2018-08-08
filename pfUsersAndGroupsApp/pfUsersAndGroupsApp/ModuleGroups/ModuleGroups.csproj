@@ -74,8 +74,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Views\ViewA.xaml.cs">
-      <DependentUpon>ViewA.xaml</DependentUpon>
+    <Compile Include="Views\Groups.xaml.cs">
+      <DependentUpon>Groups.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -91,9 +91,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\ViewA.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Groups.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

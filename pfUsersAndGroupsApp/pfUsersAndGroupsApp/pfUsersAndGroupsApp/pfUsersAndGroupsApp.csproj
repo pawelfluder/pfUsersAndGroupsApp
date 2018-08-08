@@ -89,18 +89,11 @@
     <Compile Include="Views\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\Groups.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Views\Groups.xaml.cs">
-      <DependentUpon>Groups.xaml</DependentUpon>
-    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
