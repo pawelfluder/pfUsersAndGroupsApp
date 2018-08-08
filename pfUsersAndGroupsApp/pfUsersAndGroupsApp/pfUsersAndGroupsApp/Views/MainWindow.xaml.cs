@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Microsoft.Practices.Unity;
+using ModuleGroups.Views;
 using Prism.Regions;
 
 namespace pfUsersAndGroupsApp.Views
@@ -14,7 +15,7 @@ namespace pfUsersAndGroupsApp.Views
         IRegion _region;
 
         Users _viewA;
-        //Groups _viewB;
+        Groups _viewB;
 
         public MainWindow(IUnityContainer container, IRegionManager regionManager)
         {
@@ -28,11 +29,11 @@ namespace pfUsersAndGroupsApp.Views
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             _viewA = _container.Resolve<Users>();
-            //_viewB = _container.Resolve<Groups>();
+            _viewB = _container.Resolve<Groups>();
 
             _region = _regionManager.Regions["ContentRegion"];
 
-            //_region.Add(_viewB);
+            _region.Add(_viewB);
             _region.Add(_viewA);
         }
 
@@ -51,13 +52,13 @@ namespace pfUsersAndGroupsApp.Views
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             //activate view b
-            //_region.Activate(_viewB);
+            _region.Activate(_viewB);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             //deactivate view b
-            //_region.Deactivate(_viewB);
+            _region.Deactivate(_viewB);
         }
     }
 }
