@@ -7,13 +7,17 @@
         xmlns:regions="http://prismlibrary.com/"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <DockPanel LastChildFill="True">
-        <StackPanel>
-            <Button Content="Activate ViewA" Click="Button_Click"/>
-            <Button Content="Deactivate ViewA" Click="Button_Click_1"/>
-            <Button Content="Activate ViewB" Click="Button_Click_2"/>
-            <Button Content="Deactivate ViewB" Click="Button_Click_3"/>
-        </StackPanel>
-        <ContentControl regions:RegionManager.RegionName="ContentRegion" HorizontalAlignment="Center" VerticalAlignment="Center" />
-    </DockPanel>
+    <Border BorderBrush="Black" BorderThickness="2">
+        <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Button Content="Activate ViewA" Click="Button_Click"/>
+                <Button Content="Deactivate ViewA" Click="Button_Click_1"/>
+                <Button Content="Activate ViewB" Click="Button_Click_2"/>
+                <Button Content="Deactivate ViewB" Click="Button_Click_3"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <ContentControl regions:RegionManager.RegionName="ContentRegion" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </StackPanel>
+        </DockPanel>
+    </Border>
 </Window>
