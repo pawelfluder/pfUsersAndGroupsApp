@@ -16,10 +16,8 @@
             <Border Grid.Column="0" Grid.Row="0"
                     BorderBrush="Green" BorderThickness="2">
                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <Button Content="Activate ViewA" Click="Button_Click"/>
-                    <Button Content="Deactivate ViewA" Click="Button_Click_1"/>
-                    <Button Content="Activate ViewB" Click="Button_Click_2"/>
-                    <Button Content="Deactivate ViewB" Click="Button_Click_3"/>
+                    <Button Content="Users" Click="Button_Click"/>
+                    <Button Content="Groups" Click="Button_Click_2"/>
                 </StackPanel>
             </Border>
             <Border Grid.Column="0" Grid.Row="1" 
