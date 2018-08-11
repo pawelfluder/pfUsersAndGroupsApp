@@ -3,9 +3,9 @@ using ModuleUsers.ViewModel;
 
 namespace ModuleUsers.Views
 {
-    public partial class Users : UserControl
+    public partial class UsersView : UserControl
     {
-        public Users()
+        public UsersView()
         {
             InitializeComponent();
             DataContext = new GroupsViewModel();

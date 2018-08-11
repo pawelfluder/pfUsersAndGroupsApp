@@ -1,10 +1,10 @@
 ﻿namespace CustomTypesLibrary
 {
-    public class TodoItem
+    public class GroupItem
     {
         public string Title { get; set; }
 
-        public TodoItem(string title)
+        public GroupItem(string title)
         {
             Title = title;
         }

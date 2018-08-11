@@ -16,8 +16,8 @@
             <Border Grid.Column="0" Grid.Row="0"
                     BorderBrush="Green" BorderThickness="2">
                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <Button Content="Users" Click="Button_Click"/>
-                    <Button Content="Groups" Click="Button_Click_2"/>
+                    <Button Content="UsersView" Click="Button_Click"/>
+                    <Button Content="GroupsView" Click="Button_Click_2"/>
                 </StackPanel>
             </Border>
             <Border Grid.Column="0" Grid.Row="1" 

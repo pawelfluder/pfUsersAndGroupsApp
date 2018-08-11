@@ -15,8 +15,8 @@ namespace pfUsersAndGroupsApp.Views
         IRegionManager _regionManager;
         IRegion _region;
 
-        Users _viewA;
-        Groups _viewB;
+        UsersView _viewA;
+        GroupsView _viewB;
 
         public MainWindow(IUnityContainer container, IRegionManager regionManager)
         {
@@ -29,8 +29,8 @@ namespace pfUsersAndGroupsApp.Views
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            _viewA = _container.Resolve<Users>();
-            _viewB = _container.Resolve<Groups>();
+            _viewA = _container.Resolve<UsersView>();
+            _viewB = _container.Resolve<GroupsView>();
 
             _region = _regionManager.Regions["ContentRegion"];
 

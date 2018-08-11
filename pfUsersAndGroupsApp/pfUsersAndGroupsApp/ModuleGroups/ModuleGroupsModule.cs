@@ -15,7 +15,7 @@ namespace ModuleGroups
 
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(Groups));
+            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(GroupsView));
         }
     }
 }

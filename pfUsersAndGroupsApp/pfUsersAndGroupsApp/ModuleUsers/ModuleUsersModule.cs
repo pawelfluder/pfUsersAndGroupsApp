@@ -15,7 +15,7 @@ namespace ModuleUsers
 
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(Users));
+            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(UsersView));
         }
     }
 }
