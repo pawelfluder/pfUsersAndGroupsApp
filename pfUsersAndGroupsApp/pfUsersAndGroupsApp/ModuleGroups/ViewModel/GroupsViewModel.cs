@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CustomTypesLibrary;
-using EntityFrameworkApp;
+using DALEntityframework;
 using GroupItem = CustomTypesLibrary.GroupItem;
 
 namespace ModuleGroups.ViewModel

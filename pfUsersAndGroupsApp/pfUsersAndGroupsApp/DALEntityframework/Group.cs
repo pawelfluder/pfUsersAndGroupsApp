@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EntityFrameworkApp
+namespace DALEntityframework
 {
     using System;
     using System.Collections.Generic;

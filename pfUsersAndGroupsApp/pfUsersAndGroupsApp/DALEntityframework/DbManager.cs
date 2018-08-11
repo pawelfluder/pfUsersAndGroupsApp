@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EntityFrameworkApp
+namespace DALEntityframework
 {
     public class DbManager
     {
@@ -65,7 +65,7 @@ namespace EntityFrameworkApp
         {
             List<Group> groups = _db.Groups.ToList();
 
-            var foundGroups = _db.Groups.Where(u => u.GroupName.ToString() == groupName).ToList();
+            var foundGroups = _db.Groups.Where(u => u.GroupName == groupName).ToList();
 
             foreach (Group foundGroup in foundGroups)
             {
