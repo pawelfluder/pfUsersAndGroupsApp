@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleUsers", "ModuleUsers\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomTypesLibrary", "CustomTypesLibrary\CustomTypesLibrary.csproj", "{C9A5B9B9-1448-46E9-97C9-DBD465C70167}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALEntityframework", "DALEntityframework\DALEntityframework.csproj", "{D465A2F6-3E0B-4999-9B1A-EDEB8A0320CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C9A5B9B9-1448-46E9-97C9-DBD465C70167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9A5B9B9-1448-46E9-97C9-DBD465C70167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9A5B9B9-1448-46E9-97C9-DBD465C70167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D465A2F6-3E0B-4999-9B1A-EDEB8A0320CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D465A2F6-3E0B-4999-9B1A-EDEB8A0320CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D465A2F6-3E0B-4999-9B1A-EDEB8A0320CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D465A2F6-3E0B-4999-9B1A-EDEB8A0320CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
