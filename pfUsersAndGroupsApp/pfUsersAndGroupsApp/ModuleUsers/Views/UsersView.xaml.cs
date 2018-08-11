@@ -8,7 +8,7 @@ namespace ModuleUsers.Views
         public UsersView()
         {
             InitializeComponent();
-            DataContext = new GroupsViewModel();
+            DataContext = new UsersViewModel();
         }
     }
 }

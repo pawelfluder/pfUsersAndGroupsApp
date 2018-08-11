@@ -7,23 +7,40 @@
              mc:Ignorable="d">
     <Border BorderBrush="Yellow" BorderThickness="2">
         <Grid x:Name="UsersViewMainGrid">
-            <ItemsControl ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Label Content="New User First Name"/>
+                    <TextBox Text="{Binding Path=NewFirstName}"/>
+                    <Label Content="New User Last Name"/>
+                    <TextBox Text="{Binding Path=NewLastName}"
+                        Margin="0,0,0,20"/>
+                    <Button Command="{Binding AddUserCommand}">Add User</Button>
+                    <Button>Remove User</Button>
+                </StackPanel>
+                <ItemsControl Grid.Column="2" Grid.Row="0"
+                    ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Grid.Row="0"
-                                Text="{Binding FirstName}" />
-                            <TextBlock Grid.Column="1" Grid.Row="0"
-                                       Text="{Binding LastName}" />
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                <TextBlock Grid.Column="0" Grid.Row="0"
+                                    Text="{Binding FirstName}" />
+                                <TextBlock Grid.Column="1" Grid.Row="0"
+                                           Text="{Binding LastName}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>

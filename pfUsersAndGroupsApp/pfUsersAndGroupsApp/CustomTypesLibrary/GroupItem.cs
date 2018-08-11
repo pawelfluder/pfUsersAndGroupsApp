@@ -2,11 +2,11 @@
 {
     public class GroupItem
     {
-        public string Title { get; set; }
+        public string GroupName { get; set; }
 
-        public GroupItem(string title)
+        public GroupItem(string groupName)
         {
-            Title = title;
+            GroupName = groupName;
         }
     }
 }
