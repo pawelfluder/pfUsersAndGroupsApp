@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using System.Windows.Input;
 using CustomTypesLibrary;
 using EntityFrameworkApp;
@@ -35,18 +36,38 @@ namespace ModuleUsers.ViewModel
             }
         }
 
-        public ICommand AddUserCommand
-        {
-            get;
-            set;
-        }
+        public ICommand AddUserCommand { get; set; }
+
+        public ICommand RemoveUserCommand { get; set; }
 
         public UsersViewModel()
         {
             _dbManager = new DbManager();
             Items = new ObservableCollection<UserItem>();
             AddUserCommand = new RelayCommand(AddUserMethod);
+            RemoveUserCommand = new RelayCommand(RemoveUserMethod);
 
+            UpdateUserItems();
+        }
+        
+        private void AddUserMethod(object input)
+        {
+            _dbManager.AddUser(NewFirstName, NewLastName);
+            ClearFormAndUpdateUserItems();
+        }
+
+        private void RemoveUserMethod(object input)
+        {
+            ContentPresenter inputItem = (ContentPresenter) input;
+            UserItem userToRemove = (UserItem) inputItem.Content;
+            _dbManager.RemoveUser(userToRemove.FirstName, userToRemove.LastName);
+            ClearFormAndUpdateUserItems();
+        }
+
+        private void ClearFormAndUpdateUserItems()
+        {
+            NewFirstName = string.Empty;
+            NewLastName = string.Empty;
             UpdateUserItems();
         }
 
@@ -58,14 +79,6 @@ namespace ModuleUsers.ViewModel
             {
                 Items.Add(new UserItem(user.FirstName, user.LastName));
             }
-        }
-
-        private void AddUserMethod(object input)
-        {
-            _dbManager.AddUser(NewFirstName, NewLastName);
-            NewFirstName = string.Empty;
-            NewLastName = string.Empty;
-            UpdateUserItems();
         }
     }
 }

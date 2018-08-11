@@ -24,9 +24,15 @@
                           ItemsSource="{Binding DataContext.Items, ElementName=GroupViewMainGrid}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="0,0,0,5">
-                                <TextBlock Text="{Binding GroupName}" />
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" >
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <TextBlock Text="{Binding GroupName}" />
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <Button Margin="5,0,0,0" Command="{Binding DataContext.RemoveGroupCommand, ElementName=GroupViewMainGrid}" 
+                                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}">Remove</Button>
+                                </Border>
+                            </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

@@ -28,7 +28,7 @@ namespace EntityFrameworkApp
 
         public void RemoveUser(string firstName, string lastName)
         {
-            List<User> foundUsers =_db.Users.Where(u => u.FirstName == firstName).ToList();
+            List<User> foundUsers =_db.Users.Where(u => u.FirstName == firstName && u.LastName == lastName).ToList();
 
             if (foundUsers.Any())
             {
@@ -63,7 +63,14 @@ namespace EntityFrameworkApp
 
         public void RemoveGroup(string groupName)
         {
-            List<Group> foundGroups = _db.Groups.Where(u => u.GroupName == groupName).ToList();
+            List<Group> groups = _db.Groups.ToList();
+
+            var foundGroups = _db.Groups.Where(u => u.GroupName.ToString() == groupName).ToList();
+
+            foreach (Group foundGroup in foundGroups)
+            {
+                
+            }
 
             if (foundGroups.Any())
             {

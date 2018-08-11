@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using System.Windows.Input;
 using CustomTypesLibrary;
 using EntityFrameworkApp;
+using GroupItem = CustomTypesLibrary.GroupItem;
 
 namespace ModuleGroups.ViewModel
 {
@@ -34,12 +36,35 @@ namespace ModuleGroups.ViewModel
         
         public ICommand AddGroupCommand { get; set; }
 
+        public ICommand RemoveGroupCommand { get; set; }
+
         public GroupsViewModel()
         {
             _dbManager = new DbManager();
             Items = new ObservableCollection<GroupItem>();
             AddGroupCommand = new RelayCommand(AddGroupMethod);
-            
+            RemoveGroupCommand = new RelayCommand(RemoveGroupMethod);
+
+            UpdateGroupItems();
+        }
+
+        private void AddGroupMethod(object input)
+        {
+            _dbManager.AddGroup(NewGroupName);
+            ClearFormAndUpdateUserItems();
+        }
+
+        private void RemoveGroupMethod(object input)
+        {
+            ContentPresenter inputItem = (ContentPresenter)input;
+            GroupItem groupToRemove = (GroupItem)inputItem.Content;
+            _dbManager.RemoveGroup(groupToRemove.GroupName);
+            ClearFormAndUpdateUserItems();
+        }
+
+        private void ClearFormAndUpdateUserItems()
+        {
+            NewGroupName = string.Empty;
             UpdateGroupItems();
         }
 
@@ -51,13 +76,6 @@ namespace ModuleGroups.ViewModel
             {
                 Items.Add(new GroupItem(@group.GroupName));
             }
-        }
-
-        private void AddGroupMethod(object input)
-        {
-            _dbManager.AddGroup(NewGroupName);
-            NewGroupName = string.Empty;
-            UpdateGroupItems();
         }
     }
 }

@@ -26,17 +26,19 @@
                     ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Grid.Row="0"
-                                    Text="{Binding FirstName}" />
-                                <TextBlock Grid.Column="1" Grid.Row="0"
-                                           Text="{Binding LastName}" />
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" >
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <TextBlock Text="{Binding FirstName}" />
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <TextBlock Text="{Binding LastName}" />
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <Button Margin="5,0,0,0"
+                                            Command="{Binding DataContext.RemoveUserCommand, ElementName=UsersViewMainGrid}" 
+                                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}">Remove</Button>
+                                </Border>
+                            </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
