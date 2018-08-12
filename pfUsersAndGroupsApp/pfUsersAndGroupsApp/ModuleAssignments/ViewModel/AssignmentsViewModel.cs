@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using CustomTypesLibrary;
 using DALEntityframework;
+using GroupItem = CustomTypesLibrary.GroupItem;
 
 namespace ModuleAssignments.ViewModel
 {
@@ -13,7 +15,9 @@ namespace ModuleAssignments.ViewModel
         private string _newFirstName;
         private string _newLastName;
 
-        public ObservableCollection<UserItem> Items { get; set; }
+        public ObservableCollection<UserItem> UserItems { get; set; }
+
+        public ObservableCollection<GroupItem> GroupItems { get; set; }
 
 
         public string NewFirstName
@@ -36,18 +40,21 @@ namespace ModuleAssignments.ViewModel
             }
         }
 
-        public ICommand AddUserCommand { get; set; }
+        public ICommand AddAssignmentCommand { get; set; }
 
-        public ICommand RemoveUserCommand { get; set; }
+        public ICommand RemoveAssignmentCommand { get; set; }
 
         public AssignmentsViewModel()
         {
             _dbManager = new DbManager();
-            Items = new ObservableCollection<UserItem>();
-            AddUserCommand = new RelayCommand(AddUserMethod);
-            RemoveUserCommand = new RelayCommand(RemoveUserMethod);
+            UserItems = new ObservableCollection<UserItem>();
+            GroupItems = new ObservableCollection<GroupItem>();
+
+            //AddAssignmentCommand = new RelayCommand(AddUserMethod);
+            //RemoveAssignmentCommand = new RelayCommand(RemoveUserMethod);
 
             UpdateUserItems();
+            UpdateGroupItems();
         }
         
         private void AddUserMethod(object input)
@@ -73,11 +80,21 @@ namespace ModuleAssignments.ViewModel
 
         private void UpdateUserItems()
         {
-            Items.Clear();
+            UserItems.Clear();
             List<User> users = _dbManager.GetUsers();
             foreach (User user in users)
             {
-                Items.Add(new UserItem(user.FirstName, user.LastName));
+                UserItems.Add(new UserItem(user.FirstName, user.LastName));
+            }
+        }
+
+        private void UpdateGroupItems()
+        {
+            GroupItems.Clear();
+            List<Group> groups = _dbManager.GetGroups();
+            foreach (Group group in groups)
+            {
+                GroupItems.Add(new GroupItem(@group.GroupName));
             }
         }
     }

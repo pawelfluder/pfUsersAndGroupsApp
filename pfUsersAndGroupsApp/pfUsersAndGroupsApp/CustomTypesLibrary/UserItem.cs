@@ -6,6 +6,8 @@
 
         public string LastName { get; set; }
 
+        public string FullName => FirstName + " " + LastName;
+
         public UserItem(string firstName, string lastName)
         {
             FirstName = firstName;

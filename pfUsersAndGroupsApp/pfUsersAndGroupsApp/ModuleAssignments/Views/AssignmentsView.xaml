@@ -5,25 +5,48 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
-    <Grid Margin="10">
-        <ListView Name="EmployeeList">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Department" Width="Auto" DisplayMemberBinding="{Binding Department}" />
-                </GridView>
-            </ListView.View>
-
-            <ListView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
+    <Border BorderBrush="Yellow" BorderThickness="2">
+        <Grid x:Name="UsersViewMainGrid">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Label Content="User name"/>
+                    <ComboBox ItemsSource="{Binding UserItems}" 
+                              DisplayMemberPath="FullName"
+                              SelectedValuePath="FullName">
+                    </ComboBox>
+                    <Label Content="Group name"/>
+                    <ComboBox ItemsSource="{Binding GroupItems}"
+                              DisplayMemberPath="GroupName"
+                              SelectedValuePath="GroupName">
+                    </ComboBox>
+                    <Button Command="{Binding AddUserCommand}">Add Assigment</Button>
+                </StackPanel>
+                <ItemsControl Grid.Column="2" Grid.Row="0"
+                        ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                            <StackPanel Orientation="Horizontal" >
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <TextBlock Text="{Binding FirstName}" />
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <TextBlock Text="{Binding LastName}" />
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <Button Margin="5,0,0,0"
+                                                Command="{Binding DataContext.RemoveUserCommand, ElementName=UsersViewMainGrid}" 
+                                                CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}">Remove</Button>
+                                </Border>
+                            </StackPanel>
                         </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </ListView.GroupStyle>
-        </ListView>
-
-    </Grid>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Grid>
+    </Border>
 </UserControl>
