@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Microsoft.Practices.Unity;
+using ModuleAssignments.Views;
 using ModuleGroups.Views;
 using ModuleUsers.Views;
 using Prism.Regions;
@@ -15,8 +16,9 @@ namespace pfUsersAndGroupsApp.Views
         IRegionManager _regionManager;
         IRegion _region;
 
-        UsersView _viewA;
-        GroupsView _viewB;
+        UsersView _usersView;
+        GroupsView _groupsView;
+        AssignmentsView _assignmentsView;
 
         public MainWindow(IUnityContainer container, IRegionManager regionManager)
         {
@@ -29,25 +31,33 @@ namespace pfUsersAndGroupsApp.Views
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            _viewA = _container.Resolve<UsersView>();
-            _viewB = _container.Resolve<GroupsView>();
+            _usersView = _container.Resolve<UsersView>();
+            _groupsView = _container.Resolve<GroupsView>();
+            _assignmentsView = _container.Resolve<AssignmentsView>();
 
             _region = _regionManager.Regions["ContentRegion"];
 
-            _region.Add(_viewA);
-            _region.Add(_viewB);
+            _region.Add(_usersView);
+            _region.Add(_groupsView);
+            _region.Add(_assignmentsView);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _region.Deactivate(_viewB);
-            _region.Activate(_viewA);
+            _region.Deactivate(_groupsView);
+            _region.Activate(_usersView);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            _region.Deactivate(_viewA);
-            _region.Activate(_viewB);
+            _region.Deactivate(_usersView);
+            _region.Activate(_groupsView);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            _region.Deactivate(_assignmentsView);
+            _region.Activate(_assignmentsView);
         }
     }
 }
