@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
@@ -21,9 +22,11 @@ namespace ModuleAssignments.ViewModel
 
         public ObservableCollection<GroupItem> GroupItems { get; set; }
 
+        public GroupContainer GroupsContainer { get; set; }
+
         public UserItem SelectedUser { get; set; }
 
-        public GroupItem SelectedGroup { get; set; }
+        public CustomTypesLibrary.GroupItem SelectedGroup { get; set; }
 
 
         public string NewFirstName
@@ -46,6 +49,8 @@ namespace ModuleAssignments.ViewModel
             }
         }
 
+        
+
         public ICommand AddAssignmentCommand { get; set; }
 
         public ICommand RemoveAssignmentCommand { get; set; }
@@ -53,6 +58,7 @@ namespace ModuleAssignments.ViewModel
         public AssignmentsViewModel()
         {
             _dbManager = new DbManager();
+            GroupsContainer = new GroupContainer();            
             GroupUsersItems = new ObservableCollection<GroupUsersItem>();
             UserItems = new ObservableCollection<UserItem>();
             GroupItems = new ObservableCollection<GroupItem>();
@@ -67,30 +73,17 @@ namespace ModuleAssignments.ViewModel
 
             foreach (Assignment assignment in assignments)
             {
-                User user = users.First(u => u.Id == assignment.UserId);
-                UserItem userItem = new UserItem(user.Id, user.FirstName, user.LastName);
-
-                Group group = groups.First(u => u.Id == assignment.GroupId);
-                GroupItem groupItem = new GroupItem(group.Id, group.GroupName);
-
-                GroupUsersItem existingGroup = null;
-                if (GroupUsersItems.Any())
+                if (users.Any(u => u.Id == assignment.UserId) && users.Any(u => u.Id == assignment.UserId))
                 {
-                    existingGroup = GroupUsersItems.First(ug => ug.GroupItem.Id == assignment.GroupId);
-                }
+                    User user = users.First(u => u.Id == assignment.UserId);
+                    UserItem userItem = new UserItem(user.Id, user.FirstName, user.LastName, assignment.Id);
 
-                if (existingGroup == null)
-                {
-                    GroupUsersItems.Add(new GroupUsersItem(groupItem, assignment.Id, userItem));
-                }
-                else
-                {
-                    existingGroup.AddUserIfNotExists(assignment.Id, userItem);
-                }
+                    Group group = groups.First(u => u.Id == assignment.GroupId);
+                    GroupItem groupItem = new GroupItem(group.Id, group.GroupName);
 
-
+                    GroupsContainer.AddUser(groupItem, userItem);
+                }
             }
-
 
             UpdateUserItems();
             UpdateGroupItems();
@@ -123,7 +116,7 @@ namespace ModuleAssignments.ViewModel
             List<User> users = _dbManager.GetUsers();
             foreach (User user in users)
             {
-                UserItems.Add(new UserItem(user.Id, user.FirstName, user.LastName));
+                UserItems.Add(new UserItem(user.Id, user.FirstName, user.LastName, new List<Guid>()));
             }
         }
 

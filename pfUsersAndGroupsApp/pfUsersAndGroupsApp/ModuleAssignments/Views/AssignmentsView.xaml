@@ -14,41 +14,41 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Grid.Row="0">
-                    <Label Content="UserItem name"/>
-                    <ComboBox ItemsSource="{Binding UserItems}" 
+                        <Label Content="UserItem name"/>
+                        <ComboBox ItemsSource="{Binding UserItems}" 
                               SelectedItem="{Binding SelectedUser}" 
                               DisplayMemberPath="FullName"
                               SelectedValuePath="FullName">
-                    </ComboBox>
-                    <Label Content="Group name"/>
-                    <ComboBox ItemsSource="{Binding GroupItems}"
+                        </ComboBox>
+                        <Label Content="Group name"/>
+                        <ComboBox ItemsSource="{Binding GroupItems}"
                               SelectedItem="{Binding SelectedGroup}" 
                               DisplayMemberPath="GroupName"
                               SelectedValuePath="GroupName">
-                    </ComboBox>
-                    <Button Command="{Binding AddAssignmentCommand}">Add Assigment</Button>
-                </StackPanel>
-                <ItemsControl Grid.Column="2" Grid.Row="0"
-                              ItemsSource="{Binding DataContext.GroupUsersItems, ElementName=AssignmentViewMainGrid}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" >
-                                <Border BorderBrush="Black" BorderThickness="2">
-                                    <ListBox ItemsSource="{Binding DataContext.GroupUsersItems.AssignmentIdAndUser, ElementName=AssignmentViewMainGrid}" >
+                        </ComboBox>
+                        <Button Command="{Binding AddAssignmentCommand}">Add Assigment</Button>
+                    </StackPanel>
+                <Grid Grid.Column="2" Grid.Row="0"
+                      Name="MainGrid">
+                    <ItemsControl ItemsSource="{Binding Path=DataContext.GroupsContainer.GroupUsersItems, ElementName=MainGrid}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Name="Inside">
+                                    <TextBlock Text="{Binding Path=GroupItem.GroupName}"/>
+                                    <ListBox ItemsSource="{Binding Path=DataContext.UserItems, ElementName=Inside}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Path=FirstName}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
                                     </ListBox>
-                                </Border>
-                                <Border BorderBrush="Black" BorderThickness="2">
-                                    <TextBlock Text="{Binding GroupItem.GroupName}" />
-                                </Border>
-                                <Border BorderBrush="Black" BorderThickness="2">
-                                    <Button Margin="5,0,0,0"
-                                            Command="{Binding DataContext.RemoveUserCommand, ElementName=UsersViewMainGrid}"
-                                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}">Remove</Button>
-                                </Border>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
             </Grid>
         </Grid>
     </Border>

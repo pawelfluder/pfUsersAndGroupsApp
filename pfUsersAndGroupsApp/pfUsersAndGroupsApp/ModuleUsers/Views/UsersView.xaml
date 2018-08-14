@@ -20,6 +20,7 @@
                     <TextBox Text="{Binding Path=NewLastName}"
                         Margin="0,0,0,20"/>
                     <Button Command="{Binding AddUserCommand}">Add UserItem</Button>
+                    <Button Command="{Binding AddSampleUsersCommand}">Add Sample Users</Button>
                 </StackPanel>
                 <ItemsControl Grid.Column="2" Grid.Row="0"
                     ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">

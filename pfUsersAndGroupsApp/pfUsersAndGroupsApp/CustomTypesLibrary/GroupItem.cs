@@ -2,7 +2,7 @@
 
 namespace CustomTypesLibrary
 {
-    public class GroupItem
+    public struct GroupItem
     {
         public Guid Id { get; set; }
 

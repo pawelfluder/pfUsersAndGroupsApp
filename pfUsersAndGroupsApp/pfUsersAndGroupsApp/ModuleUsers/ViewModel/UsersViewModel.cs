@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -40,12 +41,15 @@ namespace ModuleUsers.ViewModel
 
         public ICommand RemoveUserCommand { get; set; }
 
+        public ICommand AddSampleUsersCommand { get; set; }
+
         public UsersViewModel()
         {
             _dbManager = new DbManager();
             Items = new ObservableCollection<UserItem>();
             AddUserCommand = new RelayCommand(AddUserMethod);
             RemoveUserCommand = new RelayCommand(RemoveUserMethod);
+            AddSampleUsersCommand = new RelayCommand(AddSampleUsersMethod);
 
             UpdateUserItems();
         }
@@ -64,6 +68,17 @@ namespace ModuleUsers.ViewModel
             ClearFormAndUpdateUserItems();
         }
 
+        private void AddSampleUsersMethod(object input)
+        {
+            SampleUsersProvider provider = new SampleUsersProvider();
+            Dictionary<string, string> sampleUsers = provider.GetSampleUsers();
+            foreach (KeyValuePair<string, string> sampleUser in sampleUsers)
+            {
+                _dbManager.AddUser(sampleUser.Key, sampleUser.Value);
+            }
+            ClearFormAndUpdateUserItems();
+        }
+
         private void ClearFormAndUpdateUserItems()
         {
             NewFirstName = string.Empty;
@@ -77,7 +92,7 @@ namespace ModuleUsers.ViewModel
             List<User> users = _dbManager.GetUsers();
             foreach (User user in users)
             {
-                Items.Add(new UserItem(user.Id, user.FirstName, user.LastName));
+                Items.Add(new UserItem(user.Id, user.FirstName, user.LastName, new List<Guid>()));
             }
         }
     }

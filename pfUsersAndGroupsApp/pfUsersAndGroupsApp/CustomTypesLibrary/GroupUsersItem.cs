@@ -1,35 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace CustomTypesLibrary
 {
     public class GroupUsersItem
     {
-        public GroupItem GroupItem { get; set; }
-        public List<AssignmentIdAndUser> IdAndUser { get; set; }
+        //Todo remove setters
+        public GroupItem GroupItem { get; }
+        public ObservableCollection<UserItem> UserItems { get; set; }
 
-
-        public GroupUsersItem(GroupItem groupItem, List<AssignmentIdAndUser> idAndUser)
+        public GroupUsersItem(GroupItem groupItem, UserItem userItem)
         {
             GroupItem = groupItem;
-            IdAndUser = idAndUser;
+            UserItems = new ObservableCollection<UserItem>();
+            UserItems.Add(userItem);
         }
 
-        public GroupUsersItem(GroupItem groupItem, Guid id, UserItem userItem )
+        public GroupUsersItem(GroupItem groupItem)
         {
             GroupItem = groupItem;
-            IdAndUser = new List<AssignmentIdAndUser>();
-            IdAndUser.Add(new AssignmentIdAndUser(id, userItem));
+            UserItems = new ObservableCollection<UserItem>();
         }
 
-        public void AddUserIfNotExists(Guid id, UserItem userItem)
+        public void AddUserIfNotExists(UserItem userItem)
         {
-            if (IdAndUser.Any(iau => iau.Id == id) || IdAndUser.Any(iau => iau.UserItem.FirstName == userItem.FirstName && iau.UserItem.LastName == userItem.LastName))
+            if (UserItems.Any(u => u.Id == userItem.Id) || UserItems.Any(u => u.FirstName == userItem.FirstName && u.LastName == userItem.LastName))
             {
                 return;
             }
-            IdAndUser.Add(new AssignmentIdAndUser(id, userItem));
+            UserItems.Add(userItem);
         }
     }
 }

@@ -22,8 +22,13 @@ namespace DALEntityframework
 
         public void AddUser(string firstName, string lastName)
         {
-            _db.Users.Add(new User() { Id = Guid.NewGuid(), FirstName = firstName, LastName = lastName });
-            _db.SaveChanges();
+            bool userExistsInDb = _db.Users.Any(u => u.FirstName == firstName && u.LastName == lastName);
+
+            if (userExistsInDb == false)
+            {
+                _db.Users.Add(new User() { Id = Guid.NewGuid(), FirstName = firstName, LastName = lastName });
+                _db.SaveChanges();
+            }
         }
 
         public void RemoveUser(string firstName, string lastName)
