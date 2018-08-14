@@ -71,11 +71,8 @@ namespace ModuleAssignments.ViewModel
         {
             _dbManager = new DbManager();
             GroupsContainer = new GroupContainer();
-
-
+            
             GroupUsersItems = new ObservableCollection<GroupUsersItem>();
-            UserItems = new ObservableCollection<UserItem>();
-            GroupItems = new ObservableCollection<GroupItem>();
 
             AddAssignmentCommand = new RelayCommand(AddAssignmentMethod);
             RemoveAssignmentCommand = new RelayCommand(RemoveAssignmentMethod);
@@ -87,8 +84,8 @@ namespace ModuleAssignments.ViewModel
 
             foreach (Assignment assignment in assignments)
             {
-                if (users.Any(u => u.Id == assignment.UserId) && groups.Any(u => u.Id == assignment.GroupId))
-                {
+                //if (users.Any(u => u.Id == assignment.UserId) && groups.Any(u => u.Id == assignment.GroupId))
+                //{
                     User user = users.First(u => u.Id == assignment.UserId);
                     UserItem userItem = new UserItem(user.Id, user.FirstName, user.LastName, assignment.Id);
 
@@ -96,7 +93,7 @@ namespace ModuleAssignments.ViewModel
                     GroupItem groupItem = new GroupItem(group.Id, group.GroupName);
 
                     GroupsContainer.AddUser(groupItem, userItem);
-                }
+                //}
             }
 
             UpdateUserItems();
@@ -105,7 +102,7 @@ namespace ModuleAssignments.ViewModel
         
         private void AddAssignmentMethod(object input)
         {
-            _dbManager.AddAssignment(SelectedUser.Id, SelectedGroup.Id);
+            _dbManager.AddAssignment(SelectedGroup.Id, SelectedUser.Id);
             ClearFormAndUpdateUserItems();
         }
 

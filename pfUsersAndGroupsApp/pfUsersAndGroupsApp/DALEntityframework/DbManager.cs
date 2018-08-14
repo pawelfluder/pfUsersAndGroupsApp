@@ -107,7 +107,7 @@ namespace DALEntityframework
             return groups;
         }
 
-        public void AddAssignment(Guid userId, Guid groupGuid)
+        public void AddAssignment(Guid groupGuid, Guid userId)
         {
             List<User> foundUserIds = _db.Users.Where(u => u.Id == userId).ToList();
             List<Group> foundGoupIds = _db.Groups.Where(g => g.Id == groupGuid).ToList();
