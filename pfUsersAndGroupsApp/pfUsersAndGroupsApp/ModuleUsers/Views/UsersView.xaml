@@ -14,12 +14,12 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Grid.Row="0">
-                    <Label Content="New User First Name"/>
+                    <Label Content="New UserItem First Name"/>
                     <TextBox Text="{Binding Path=NewFirstName}"/>
-                    <Label Content="New User Last Name"/>
+                    <Label Content="New UserItem Last Name"/>
                     <TextBox Text="{Binding Path=NewLastName}"
                         Margin="0,0,0,20"/>
-                    <Button Command="{Binding AddUserCommand}">Add User</Button>
+                    <Button Command="{Binding AddUserCommand}">Add UserItem</Button>
                 </StackPanel>
                 <ItemsControl Grid.Column="2" Grid.Row="0"
                     ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">
@@ -34,7 +34,7 @@
                                 </Border>
                                 <Border BorderBrush="Black" BorderThickness="2">
                                     <Button Margin="5,0,0,0"
-                                            Command="{Binding DataContext.RemoveUserCommand, ElementName=UsersViewMainGrid}" 
+                                            Command="{Binding DataContext.RemoveUserCommand, ElementName=UsersViewMainGrid}"
                                             CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}">Remove</Button>
                                 </Border>
                             </StackPanel>

@@ -74,7 +74,7 @@ namespace ModuleGroups.ViewModel
             List<Group> groups = _dbManager.GetGroups();
             foreach (Group group in groups)
             {
-                Items.Add(new GroupItem(@group.GroupName));
+                Items.Add(new GroupItem(group.Id, group.GroupName));
             }
         }
     }

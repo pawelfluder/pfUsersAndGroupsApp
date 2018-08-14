@@ -6,7 +6,7 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
     <Border BorderBrush="Yellow" BorderThickness="2">
-        <Grid x:Name="UsersViewMainGrid">
+        <Grid x:Name="AssignmentViewMainGrid">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="130" />
@@ -14,33 +14,36 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Grid.Row="0">
-                    <Label Content="User name"/>
+                    <Label Content="UserItem name"/>
                     <ComboBox ItemsSource="{Binding UserItems}" 
+                              SelectedItem="{Binding SelectedUser}" 
                               DisplayMemberPath="FullName"
                               SelectedValuePath="FullName">
                     </ComboBox>
                     <Label Content="Group name"/>
                     <ComboBox ItemsSource="{Binding GroupItems}"
+                              SelectedItem="{Binding SelectedGroup}" 
                               DisplayMemberPath="GroupName"
                               SelectedValuePath="GroupName">
                     </ComboBox>
-                    <Button Command="{Binding AddUserCommand}">Add Assigment</Button>
+                    <Button Command="{Binding AddAssignmentCommand}">Add Assigment</Button>
                 </StackPanel>
                 <ItemsControl Grid.Column="2" Grid.Row="0"
-                        ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">
+                              ItemsSource="{Binding DataContext.GroupUsersItems, ElementName=AssignmentViewMainGrid}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" >
                                 <Border BorderBrush="Black" BorderThickness="2">
-                                    <TextBlock Text="{Binding FirstName}" />
+                                    <ListBox ItemsSource="{Binding DataContext.GroupUsersItems.AssignmentIdAndUser, ElementName=AssignmentViewMainGrid}" >
+                                    </ListBox>
                                 </Border>
                                 <Border BorderBrush="Black" BorderThickness="2">
-                                    <TextBlock Text="{Binding LastName}" />
+                                    <TextBlock Text="{Binding GroupItem.GroupName}" />
                                 </Border>
                                 <Border BorderBrush="Black" BorderThickness="2">
                                     <Button Margin="5,0,0,0"
-                                                Command="{Binding DataContext.RemoveUserCommand, ElementName=UsersViewMainGrid}" 
-                                                CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}">Remove</Button>
+                                            Command="{Binding DataContext.RemoveUserCommand, ElementName=UsersViewMainGrid}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}">Remove</Button>
                                 </Border>
                             </StackPanel>
                         </DataTemplate>

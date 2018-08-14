@@ -77,7 +77,7 @@ namespace ModuleUsers.ViewModel
             List<User> users = _dbManager.GetUsers();
             foreach (User user in users)
             {
-                Items.Add(new UserItem(user.FirstName, user.LastName));
+                Items.Add(new UserItem(user.Id, user.FirstName, user.LastName));
             }
         }
     }
