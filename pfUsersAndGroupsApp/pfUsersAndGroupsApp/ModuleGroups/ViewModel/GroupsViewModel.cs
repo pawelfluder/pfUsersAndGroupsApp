@@ -38,12 +38,15 @@ namespace ModuleGroups.ViewModel
 
         public ICommand RemoveGroupCommand { get; set; }
 
+        public ICommand AddSampleGroupsCommand { get; set; }
+
         public GroupsViewModel()
         {
             _dbManager = new DbManager();
             Items = new ObservableCollection<GroupItem>();
             AddGroupCommand = new RelayCommand(AddGroupMethod);
             RemoveGroupCommand = new RelayCommand(RemoveGroupMethod);
+            AddSampleGroupsCommand = new RelayCommand(AddSampleGroupsMethod);
 
             UpdateGroupItems();
         }
@@ -59,6 +62,17 @@ namespace ModuleGroups.ViewModel
             ContentPresenter inputItem = (ContentPresenter)input;
             GroupItem groupToRemove = (GroupItem)inputItem.Content;
             _dbManager.RemoveGroup(groupToRemove.GroupName);
+            ClearFormAndUpdateUserItems();
+        }
+
+        private void AddSampleGroupsMethod(object input)
+        {
+            SampleGroupsProvider provider = new SampleGroupsProvider();
+            List<string> sampleGrops = provider.GetSampleGroups();
+            foreach (string sampleGroup in sampleGrops)
+            {
+                _dbManager.AddGroup(sampleGroup);
+            }
             ClearFormAndUpdateUserItems();
         }
 

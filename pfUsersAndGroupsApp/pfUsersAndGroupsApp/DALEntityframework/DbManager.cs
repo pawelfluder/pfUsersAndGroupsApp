@@ -62,8 +62,13 @@ namespace DALEntityframework
 
         public void AddGroup(string groupName)
         {
-            _db.Groups.Add(new Group() { Id = Guid.NewGuid(), GroupName = groupName});
-            _db.SaveChanges();
+            bool groupExistsInDb = _db.Groups.Any(u => u.GroupName == groupName);
+
+            if (groupExistsInDb == false)
+            {
+                _db.Groups.Add(new Group() {Id = Guid.NewGuid(), GroupName = groupName});
+                _db.SaveChanges();
+            }
         }
 
         public void RemoveGroup(string groupName)

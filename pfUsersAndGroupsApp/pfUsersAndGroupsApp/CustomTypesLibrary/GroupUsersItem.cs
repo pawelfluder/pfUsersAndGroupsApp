@@ -24,7 +24,7 @@ namespace CustomTypesLibrary
 
         public void AddUserIfNotExists(UserItem userItem)
         {
-            if (UserItems.Any(u => u.Id == userItem.Id) || UserItems.Any(u => u.FirstName == userItem.FirstName && u.LastName == userItem.LastName))
+            if (UserItems.Any(u => u.Id == userItem.Id) || UserItems.Any(u => u.FullName == userItem.FullName && u.Email == userItem.Email))
             {
                 return;
             }

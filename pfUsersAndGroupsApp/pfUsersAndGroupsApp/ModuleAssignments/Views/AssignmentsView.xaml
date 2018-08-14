@@ -9,7 +9,7 @@
         <Grid x:Name="AssignmentViewMainGrid">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="230" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -17,8 +17,8 @@
                         <Label Content="UserItem name"/>
                         <ComboBox ItemsSource="{Binding UserItems}" 
                               SelectedItem="{Binding SelectedUser}" 
-                              DisplayMemberPath="FullName"
-                              SelectedValuePath="FullName">
+                              DisplayMemberPath="Profile"
+                              SelectedValuePath="Profile">
                         </ComboBox>
                         <Label Content="Group name"/>
                         <ComboBox ItemsSource="{Binding GroupItems}"
@@ -39,7 +39,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <TextBlock Text="{Binding Path=FirstName}"/>
+                                                    <TextBlock Text="{Binding Path=FullName}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>

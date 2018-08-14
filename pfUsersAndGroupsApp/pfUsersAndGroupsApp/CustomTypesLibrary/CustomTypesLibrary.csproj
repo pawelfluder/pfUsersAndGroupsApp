@@ -46,6 +46,7 @@
     <Compile Include="NotifyBase.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="GroupUsersItem.cs" />
+    <Compile Include="SampleGroupsProvider.cs" />
     <Compile Include="SampleUsersProvider.cs" />
     <Compile Include="UserItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

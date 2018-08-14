@@ -7,27 +7,27 @@ namespace CustomTypesLibrary
     {
         public Guid Id { get; set; }
 
-        public string FirstName { get; set; }
+        public string FullName { get; set; }
 
-        public string LastName { get; set; }
+        public string Email { get; set; }
 
-        public string FullName => FirstName + " " + LastName;
+        public string Profile => FullName + " " + Email;
 
         public List<Guid> AssignmentIds { get; set; }
 
-        public UserItem(Guid id, string firstName, string lastName, List<Guid> assignmentIds)
+        public UserItem(Guid id, string fullName, string email, List<Guid> assignmentIds)
         {
             Id = id;
-            FirstName = firstName;
-            LastName = lastName;
+            FullName = fullName;
+            Email = email;
             AssignmentIds = assignmentIds;
         }
 
-        public UserItem(Guid id, string firstName, string lastName, Guid assignmentId)
+        public UserItem(Guid id, string fullName, string email, Guid assignmentId)
         {
             Id = id;
-            FirstName = firstName;
-            LastName = lastName;
+            FullName = fullName;
+            Email = email;
             AssignmentIds = new List<Guid>
             {
                 assignmentId

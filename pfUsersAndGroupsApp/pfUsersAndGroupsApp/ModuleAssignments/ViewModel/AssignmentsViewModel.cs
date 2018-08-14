@@ -18,15 +18,27 @@ namespace ModuleAssignments.ViewModel
 
         public ObservableCollection<GroupUsersItem> GroupUsersItems { get; set; }
 
-        public ObservableCollection<UserItem> UserItems { get; set; }
+        public ObservableCollection<UserItem> UserItems
+        {
+            get
+            {
+                return new ObservableCollection<UserItem>(GroupsContainer.GroupUsersItems.SelectMany(i => i.UserItems));
+            }
+        }
 
-        public ObservableCollection<GroupItem> GroupItems { get; set; }
+        public ObservableCollection<GroupItem> GroupItems
+        {
+            get
+            {
+                return new ObservableCollection<GroupItem>(GroupsContainer.GroupUsersItems.Select(i => i.GroupItem));
+            }
+        }
 
         public GroupContainer GroupsContainer { get; set; }
 
         public UserItem SelectedUser { get; set; }
 
-        public CustomTypesLibrary.GroupItem SelectedGroup { get; set; }
+        public GroupItem SelectedGroup { get; set; }
 
 
         public string NewFirstName
@@ -58,7 +70,9 @@ namespace ModuleAssignments.ViewModel
         public AssignmentsViewModel()
         {
             _dbManager = new DbManager();
-            GroupsContainer = new GroupContainer();            
+            GroupsContainer = new GroupContainer();
+
+
             GroupUsersItems = new ObservableCollection<GroupUsersItem>();
             UserItems = new ObservableCollection<UserItem>();
             GroupItems = new ObservableCollection<GroupItem>();
@@ -73,7 +87,7 @@ namespace ModuleAssignments.ViewModel
 
             foreach (Assignment assignment in assignments)
             {
-                if (users.Any(u => u.Id == assignment.UserId) && users.Any(u => u.Id == assignment.UserId))
+                if (users.Any(u => u.Id == assignment.UserId) && groups.Any(u => u.Id == assignment.GroupId))
                 {
                     User user = users.First(u => u.Id == assignment.UserId);
                     UserItem userItem = new UserItem(user.Id, user.FirstName, user.LastName, assignment.Id);
@@ -99,7 +113,7 @@ namespace ModuleAssignments.ViewModel
         {
             ContentPresenter inputItem = (ContentPresenter) input;
             UserItem userToRemove = (UserItem) inputItem.Content;
-            _dbManager.RemoveUser(userToRemove.FirstName, userToRemove.LastName);
+            _dbManager.RemoveUser(userToRemove.FullName, userToRemove.Email);
             ClearFormAndUpdateUserItems();
         }
 

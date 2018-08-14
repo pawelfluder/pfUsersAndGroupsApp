@@ -28,10 +28,10 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" >
                                 <Border BorderBrush="Black" BorderThickness="2">
-                                    <TextBlock Text="{Binding FirstName}" />
+                                    <TextBlock Text="{Binding FullName}" />
                                 </Border>
                                 <Border BorderBrush="Black" BorderThickness="2">
-                                    <TextBlock Text="{Binding LastName}" />
+                                    <TextBlock Text="{Binding Email}" />
                                 </Border>
                                 <Border BorderBrush="Black" BorderThickness="2">
                                     <Button Margin="5,0,0,0"

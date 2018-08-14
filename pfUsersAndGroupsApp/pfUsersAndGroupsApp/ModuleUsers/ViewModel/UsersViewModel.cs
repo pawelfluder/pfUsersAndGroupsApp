@@ -64,7 +64,7 @@ namespace ModuleUsers.ViewModel
         {
             ContentPresenter inputItem = (ContentPresenter) input;
             UserItem userToRemove = (UserItem) inputItem.Content;
-            _dbManager.RemoveUser(userToRemove.FirstName, userToRemove.LastName);
+            _dbManager.RemoveUser(userToRemove.FullName, userToRemove.Email);
             ClearFormAndUpdateUserItems();
         }
 
