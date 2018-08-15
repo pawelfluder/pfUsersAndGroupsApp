@@ -6,8 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="54a55ecdd3044ee88efd2bb2b1b9dc73" Name="Diagram1">
         <EntityTypeShape EntityType="UserAndGroupsDbModel.Assignment" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserAndGroupsDbModel.Group" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserAndGroupsDbModel.Group" Width="1.5" PointX="2.875" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="UserAndGroupsDbModel.User" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="UserAndGroupsDbModel.FK__Assignmen__UserI__5165187F" />
+        <AssociationConnector Association="UserAndGroupsDbModel.FK__Assignmen__Group__5535A963" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -11,28 +11,28 @@ namespace ModuleUsers.ViewModel
     public class UsersViewModel : NotifyBase
     {
         private DbManager _dbManager;
-        private string _newFirstName;
-        private string _newLastName;
+        private string _newFullName;
+        private string _newEmail;
 
         public ObservableCollection<UserItem> Items { get; set; }
 
 
-        public string NewFirstName
+        public string NewFullName
         {
-            get { return _newFirstName; }
+            get { return _newFullName; }
             set
             {
-                _newFirstName = value;
+                _newFullName = value;
                 OnPropertyChanged();
             }
         }
 
-        public string NewLastName
+        public string NewEmail
         {
-            get { return _newLastName; }
+            get { return _newEmail; }
             set
             {
-                _newLastName = value;
+                _newEmail = value;
                 OnPropertyChanged();
             }
         }
@@ -56,7 +56,7 @@ namespace ModuleUsers.ViewModel
         
         private void AddUserMethod(object input)
         {
-            _dbManager.AddUser(NewFirstName, NewLastName);
+            _dbManager.AddUser(NewFullName, NewEmail);
             ClearFormAndUpdateUserItems();
         }
 
@@ -81,8 +81,8 @@ namespace ModuleUsers.ViewModel
 
         private void ClearFormAndUpdateUserItems()
         {
-            NewFirstName = string.Empty;
-            NewLastName = string.Empty;
+            NewFullName = string.Empty;
+            NewEmail = string.Empty;
             UpdateUserItems();
         }
 
@@ -92,7 +92,7 @@ namespace ModuleUsers.ViewModel
             List<User> users = _dbManager.GetUsers();
             foreach (User user in users)
             {
-                Items.Add(new UserItem(user.Id, user.FirstName, user.LastName, new List<Guid>()));
+                Items.Add(new UserItem(user.Id, user.FullName, user.Email, new List<Guid>()));
             }
         }
     }

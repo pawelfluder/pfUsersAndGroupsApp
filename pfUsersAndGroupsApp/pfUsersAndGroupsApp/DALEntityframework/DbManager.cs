@@ -20,20 +20,20 @@ namespace DALEntityframework
             return users;
         }
 
-        public void AddUser(string firstName, string lastName)
+        public void AddUser(string FullName, string Email)
         {
-            bool userExistsInDb = _db.Users.Any(u => u.FirstName == firstName && u.LastName == lastName);
+            bool userExistsInDb = _db.Users.Any(u => u.FullName == FullName && u.Email == Email);
 
             if (userExistsInDb == false)
             {
-                _db.Users.Add(new User() { Id = Guid.NewGuid(), FirstName = firstName, LastName = lastName });
+                _db.Users.Add(new User() { Id = Guid.NewGuid(), FullName = FullName, Email = Email });
                 _db.SaveChanges();
             }
         }
 
-        public void RemoveUser(string firstName, string lastName)
+        public void RemoveUser(string FullName, string Email)
         {
-            List<User> foundUsers =_db.Users.Where(u => u.FirstName == firstName && u.LastName == lastName).ToList();
+            List<User> foundUsers =_db.Users.Where(u => u.FullName == FullName && u.Email == Email).ToList();
 
             if (foundUsers.Any())
             {

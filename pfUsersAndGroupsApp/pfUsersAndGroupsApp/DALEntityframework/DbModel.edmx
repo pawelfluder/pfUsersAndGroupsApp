@@ -25,13 +25,45 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK__Assignmen__Group__5535A963">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assignmen__UserI__5441852A">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="UserAndGroupsDbModelStoreContainer">
           <EntitySet Name="Assignments" EntityType="Self.Assignments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Assignmen__Group__5535A963" Association="Self.FK__Assignmen__Group__5535A963">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assignmen__UserI__5441852A" Association="Self.FK__Assignmen__UserI__5441852A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -44,6 +76,8 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="UserId" Type="Guid" />
           <Property Name="GroupId" Type="Guid" />
+          <NavigationProperty Name="User" Relationship="UserAndGroupsDbModel.FK__Assignmen__UserI__5165187F" FromRole="Assignment" ToRole="User" />
+          <NavigationProperty Name="Group" Relationship="UserAndGroupsDbModel.FK__Assignmen__Group__5535A963" FromRole="Assignment" ToRole="Group" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -51,20 +85,54 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Assignments" Relationship="UserAndGroupsDbModel.FK__Assignmen__Group__5535A963" FromRole="Group" ToRole="Assignment" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Assignments" Relationship="UserAndGroupsDbModel.FK__Assignmen__UserI__5165187F" FromRole="User" ToRole="Assignment" />
         </EntityType>
         <EntityContainer Name="UserAndGroupsDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Assignments" EntityType="Self.Assignment" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Assignmen__UserI__5165187F" Association="UserAndGroupsDbModel.FK__Assignmen__UserI__5165187F">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Assignment" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Assignmen__Group__5535A963" Association="UserAndGroupsDbModel.FK__Assignmen__Group__5535A963">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Assignment" EntitySet="Assignments" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__Assignmen__UserI__5165187F">
+          <End Type="UserAndGroupsDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="UserAndGroupsDbModel.Assignment" Role="Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Assignmen__Group__5535A963">
+          <End Type="UserAndGroupsDbModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="UserAndGroupsDbModel.Assignment" Role="Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -91,10 +159,10 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="UserAndGroupsDbModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

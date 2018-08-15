@@ -15,9 +15,9 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Grid.Row="0">
                     <Label Content="New UserItem First Name"/>
-                    <TextBox Text="{Binding Path=NewFirstName}"/>
+                    <TextBox Text="{Binding Path=NewFullName}"/>
                     <Label Content="New UserItem Last Name"/>
-                    <TextBox Text="{Binding Path=NewLastName}"
+                    <TextBox Text="{Binding Path=NewEmail}"
                         Margin="0,0,0,20"/>
                     <Button Command="{Binding AddUserCommand}">Add UserItem</Button>
                     <Button Command="{Binding AddSampleUsersCommand}">Add Sample Users</Button>
