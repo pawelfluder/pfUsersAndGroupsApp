@@ -55,6 +55,7 @@
     <Compile Include="Assignment.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AssignmentsViewModel.cs" />
     <Compile Include="DbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
