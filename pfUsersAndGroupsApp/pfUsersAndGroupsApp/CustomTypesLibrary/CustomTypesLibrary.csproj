@@ -54,11 +54,5 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupItem.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DALEntityframework\DALEntityframework.csproj">
-      <Project>{d465a2f6-3e0b-4999-9b1a-edeb8a0320ce}</Project>
-      <Name>DALEntityframework</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

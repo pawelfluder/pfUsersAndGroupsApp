@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CustomTypesLibrary;
 
 namespace DALEntityframework
 {
@@ -14,10 +15,24 @@ namespace DALEntityframework
         }
 
         //Users
-        public List<User> GetUsers()
+        public List<UserItem> GetUsersWitOutAssigments()
         {
-            List<User> users =_db.Users.ToList();
-            return users;
+            //Dictionary<Guid, Guid> assignmentIds = 
+                var gg = _db.Assignments.Select(u => new KeyValuePair<Guid, Guid>(u.Id, u.UserId));
+            List<UserItem> userItems = _db.Users.Select(u => new UserItem(u.Id, u.FullName, u.FullName, new List<Guid>())).ToList();
+            AddAssignmentsToUsers(userItems, assignmentIds);
+            return userItems;
+        }
+
+        public List<UserItem> AddAssignmentsToUsers(List<UserItem> userItems, List<string> assignmentIds)
+        {
+
+        }
+
+        public List<UserItem> GetUsersWitAssigments()
+        {
+            List<UserItem> userItems = _db.Users.Select(u => new UserItem(u.Id, u.FullName, u.FullName, new List<Guid>())).ToList();
+            return userItems;
         }
 
         public void AddUser(string FullName, string Email)

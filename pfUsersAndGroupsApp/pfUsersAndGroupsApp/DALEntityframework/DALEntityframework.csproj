@@ -55,7 +55,6 @@
     <Compile Include="Assignment.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AssignmentsViewModel.cs" />
     <Compile Include="DbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +105,12 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomTypesLibrary\CustomTypesLibrary.csproj">
+      <Project>{c9a5b9b9-1448-46e9-97c9-dbd465c70167}</Project>
+      <Name>CustomTypesLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
