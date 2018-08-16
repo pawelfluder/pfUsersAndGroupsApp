@@ -13,9 +13,9 @@ namespace CustomTypesLibrary
 
         public string Profile => FullName + " " + Email;
 
-        public List<Guid> AssignmentIds { get; set; }
+        public List<AssignmentItem> AssignmentIds { get; set; }
 
-        public UserItem(Guid id, string fullName, string email, List<Guid> assignmentIds)
+        public UserItem(Guid id, string fullName, string email, List<AssignmentItem> assignmentIds)
         {
             Id = id;
             FullName = fullName;
@@ -23,15 +23,33 @@ namespace CustomTypesLibrary
             AssignmentIds = assignmentIds;
         }
 
-        public UserItem(Guid id, string fullName, string email, Guid assignmentId)
+        public UserItem(Guid id, string fullName, string email)
         {
             Id = id;
             FullName = fullName;
             Email = email;
-            AssignmentIds = new List<Guid>
+            AssignmentIds = new List<AssignmentItem>();
+        }
+
+        public UserItem(Guid id, string fullName, string email, AssignmentItem assignmentItem)
+        {
+            Id = id;
+            FullName = fullName;
+            Email = email;
+            AssignmentIds = new List<AssignmentItem>
             {
-                assignmentId
+                assignmentItem
             };
+        }
+
+        public void AddAssignmentId(AssignmentItem assignmentItem)
+        {
+            AssignmentIds.Add(assignmentItem);
+        }
+
+        public void AddAssignmentIds(List<AssignmentItem> assignmentItems)
+        {
+            AssignmentIds.AddRange(assignmentItems);
         }
     }
 }

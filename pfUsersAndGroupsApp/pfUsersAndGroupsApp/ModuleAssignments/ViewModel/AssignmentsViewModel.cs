@@ -67,11 +67,11 @@ namespace ModuleAssignments.ViewModel
 
         private void UpdateGroupContainer()
         {
-            List<User> users = _dbManager.GetUsers();
-            List<Group> groups = _dbManager.GetGroups();
-            List<Assignment> assignments = _dbManager.GetAssigments();
+            List<UserItem> users = _dbManager.GetUsersWithOutAssigments();
+            List<GroupItem> groups = _dbManager.GetGroups();
+            List<AssignmentItem> assignments = _dbManager.GetAssigments();
 
-            ContainerOp.UpdateGroupContainer(GroupsContainer, assignments, users, groups);
+            GroupContainerOp.UpdateGroupContainer(GroupsContainer, assignments, users, groups);
         }
     }
 }

@@ -28,7 +28,7 @@
           <Property Name="FullName" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__Assignmen__Group__5535A963">
+        <Association Name="FK__Assignmen__Group__70DDC3D8">
           <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
           <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -40,7 +40,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Assignmen__UserI__5441852A">
+        <Association Name="FK__Assignmen__UserI__6FE99F9F">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -56,11 +56,11 @@
           <EntitySet Name="Assignments" EntityType="Self.Assignments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Assignmen__Group__5535A963" Association="Self.FK__Assignmen__Group__5535A963">
+          <AssociationSet Name="FK__Assignmen__Group__70DDC3D8" Association="Self.FK__Assignmen__Group__70DDC3D8">
             <End Role="Groups" EntitySet="Groups" />
             <End Role="Assignments" EntitySet="Assignments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Assignmen__UserI__5441852A" Association="Self.FK__Assignmen__UserI__5441852A">
+          <AssociationSet Name="FK__Assignmen__UserI__6FE99F9F" Association="Self.FK__Assignmen__UserI__6FE99F9F">
             <End Role="Users" EntitySet="Users" />
             <End Role="Assignments" EntitySet="Assignments" />
           </AssociationSet>

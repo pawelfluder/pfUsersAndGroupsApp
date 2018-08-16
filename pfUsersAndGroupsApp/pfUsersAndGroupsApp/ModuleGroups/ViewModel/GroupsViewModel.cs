@@ -85,11 +85,8 @@ namespace ModuleGroups.ViewModel
         private void UpdateGroupItems()
         {
             Items.Clear();
-            List<Group> groups = _dbManager.GetGroups();
-            foreach (Group group in groups)
-            {
-                Items.Add(new GroupItem(group.Id, group.GroupName));
-            }
+            List<GroupItem> groups = _dbManager.GetGroups();
+            Items.AddRange(groups);
         }
     }
 }

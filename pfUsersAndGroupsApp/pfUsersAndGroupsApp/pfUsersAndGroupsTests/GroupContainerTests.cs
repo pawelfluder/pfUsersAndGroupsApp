@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CustomTypesLibrary;
-using DALEntityframework;
 using NUnit.Framework;
 
 namespace pfUsersAndGroupsTests
@@ -14,11 +13,11 @@ namespace pfUsersAndGroupsTests
         public void FindNotAssignedUsersTest()
         {
             //Assert
-            List<User> sampleUsers = GroupUsersOp.GetSampleUsers();
-            List<Assignment> assignments = new List<Assignment>();
+            List<UserItem> sampleUsers = GroupUsersItemsOp.GetSampleUsers();
+            List<AssignmentItem> assignments = new List<AssignmentItem>();
 
             //Act
-            List<User> notAssignedUsers = GroupUsersOp.FindNotAssignedUsers(sampleUsers, assignments);
+            List<UserItem> notAssignedUsers = GroupUsersItemsOp.FindNotAssignedUsers(sampleUsers, assignments);
 
             //Assert
             Assert.AreEqual(sampleUsers.Count, notAssignedUsers.Count);
@@ -28,12 +27,12 @@ namespace pfUsersAndGroupsTests
         public void FindNotAssignedUsersTest2()
         {
             //Assert
-            List<User> sampleUsers = GroupUsersOp.GetSampleUsers();
-            List<Assignment> assignments = new List<Assignment>();
-            assignments.Add(new Assignment(){Id = Guid.NewGuid(), GroupId = Guid.NewGuid(), UserId = sampleUsers.First().Id});
+            List<UserItem> sampleUsers = GroupUsersItemsOp.GetSampleUsers();
+            List<AssignmentItem> assignments = new List<AssignmentItem>();
+            assignments.Add(new AssignmentItem(){Id = Guid.NewGuid(), GroupId = Guid.NewGuid(), UserId = sampleUsers.First().Id});
 
             //Act
-            List<User> notAssignedUsers = GroupUsersOp.FindNotAssignedUsers(sampleUsers, assignments);
+            List<UserItem> notAssignedUsers = GroupUsersItemsOp.FindNotAssignedUsers(sampleUsers, assignments);
 
             //Assert
             Assert.AreEqual(sampleUsers.Count - 1, notAssignedUsers.Count);
@@ -50,7 +49,7 @@ namespace pfUsersAndGroupsTests
             foreach (KeyValuePair<string, string> sampleUser in sampleUsers)
             {
                 groupContainer.AddUser(groupItem,
-                    new UserItem(Guid.NewGuid(), sampleUser.Key, sampleUser.Value, new List<Guid>()));
+                    new UserItem(Guid.NewGuid(), sampleUser.Key, sampleUser.Value, new List<AssignmentItem>()));
             }
 
             return groupContainer;

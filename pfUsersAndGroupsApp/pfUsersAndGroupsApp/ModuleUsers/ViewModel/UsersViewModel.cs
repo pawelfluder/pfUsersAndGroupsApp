@@ -89,11 +89,8 @@ namespace ModuleUsers.ViewModel
         private void UpdateUserItems()
         {
             Items.Clear();
-            List<User> users = _dbManager.GetUsers();
-            foreach (User user in users)
-            {
-                Items.Add(new UserItem(user.Id, user.FullName, user.Email, new List<Guid>()));
-            }
+            List<UserItem> userItems = _dbManager.GetUsersWithOutAssigments();
+            Items.AddRange(userItems);
         }
     }
 }

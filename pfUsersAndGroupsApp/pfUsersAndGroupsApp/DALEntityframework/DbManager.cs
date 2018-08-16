@@ -15,24 +15,32 @@ namespace DALEntityframework
         }
 
         //Users
-        public List<UserItem> GetUsersWitOutAssigments()
+        public List<UserItem> GetUsersWithOutAssigments()
         {
-            //Dictionary<Guid, Guid> assignmentIds = 
-                var gg = _db.Assignments.Select(u => new KeyValuePair<Guid, Guid>(u.Id, u.UserId));
-            List<UserItem> userItems = _db.Users.Select(u => new UserItem(u.Id, u.FullName, u.FullName, new List<Guid>())).ToList();
-            AddAssignmentsToUsers(userItems, assignmentIds);
+            if (_db.Users.Any())
+            {
+                List<User> users = _db.Users.ToList();
+                List<UserItem> userItems = users.Select(u => new UserItem(u.Id, u.FullName, u.Email)).ToList();
+                return userItems;
+            }
+            return new List<UserItem>();
+        }
+
+        public List<UserItem> GetUsersWithAssigments()
+        {
+            List<UserItem> userItems = GetUsersWithOutAssigments();
+            List<AssignmentItem> assignmentItems = _db.Assignments.Select(u => new AssignmentItem(u.Id, u.GroupId, u.UserId)).ToList();
+
+            AddAssignmentsToUsers(userItems, assignmentItems);
             return userItems;
         }
 
-        public List<UserItem> AddAssignmentsToUsers(List<UserItem> userItems, List<string> assignmentIds)
+        private void AddAssignmentsToUsers(List<UserItem> userItems, List<AssignmentItem> userIdAndAssignId)
         {
-
-        }
-
-        public List<UserItem> GetUsersWitAssigments()
-        {
-            List<UserItem> userItems = _db.Users.Select(u => new UserItem(u.Id, u.FullName, u.FullName, new List<Guid>())).ToList();
-            return userItems;
+            foreach (UserItem userItem in userItems)
+            {
+                userItem.AddAssignmentIds(userIdAndAssignId.Where(a => a.UserId == userItem.Id).ToList());
+            }
         }
 
         public void AddUser(string FullName, string Email)
@@ -46,33 +54,36 @@ namespace DALEntityframework
             }
         }
 
-        public void RemoveUser(string FullName, string Email)
+        public void RemoveUser(string fullName, string email)
         {
-            List<User> foundUsers =_db.Users.Where(u => u.FullName == FullName && u.Email == Email).ToList();
-
-            if (foundUsers.Any())
+            if (_db.Users.Any(u => u.FullName == fullName && u.Email == email))
             {
+                List<User> foundUsers = _db.Users.Where(u => u.FullName == fullName && u.Email == email).ToList();
                 _db.Users.RemoveRange(foundUsers);
                 _db.SaveChanges();
             }
         }
 
-        public void RemoveUser(Guid id)
+        public void RemoveUser(Guid userId)
         {
-            List<User> foundUsers = _db.Users.Where(u => u.Id == id).ToList();
-
-            if (foundUsers.Any())
+            if (_db.Users.Any(u => u.Id == userId))
             {
+                List<User> foundUsers = _db.Users.Where(u => u.Id == userId).ToList();
                 _db.Users.RemoveRange(foundUsers);
                 _db.SaveChanges();
             }
         }
 
         //Groups
-        public List<Group> GetGroups()
+        public List<GroupItem> GetGroups()
         {
-            List<Group> groups = _db.Groups.ToList();
-            return groups;
+            if (_db.Groups.Any())
+            {
+                List<Group> groups = _db.Groups.ToList();
+                List<GroupItem> groupItems = groups.Select(g => new GroupItem(g.Id, g.GroupName)).ToList();
+                return groupItems;
+            }
+            return new List<GroupItem>();
         }
 
         public void AddGroup(string groupName)
@@ -91,11 +102,6 @@ namespace DALEntityframework
             List<Group> groups = _db.Groups.ToList();
 
             var foundGroups = _db.Groups.Where(u => u.GroupName == groupName).ToList();
-
-            foreach (Group foundGroup in foundGroups)
-            {
-                
-            }
 
             if (foundGroups.Any())
             {
@@ -116,10 +122,15 @@ namespace DALEntityframework
         }
 
         //Assigments
-        public List<Assignment> GetAssigments()
+        public List<AssignmentItem> GetAssigments()
         {
-            List<Assignment> groups = _db.Assignments.ToList();
-            return groups;
+            if (_db.Groups.Any())
+            {
+                List<Assignment> assignments = _db.Assignments.ToList();
+                List<AssignmentItem> assignmentItems = assignments.Select(g => new AssignmentItem(g.Id, g.GroupId, g.UserId)).ToList();
+                return assignmentItems;
+            }
+            return new List<AssignmentItem>();
         }
 
         public void AddAssignment(Guid groupGuid, Guid userId)
