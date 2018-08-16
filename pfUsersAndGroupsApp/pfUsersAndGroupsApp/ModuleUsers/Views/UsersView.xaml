@@ -23,7 +23,7 @@
                     <Button Command="{Binding AddSampleUsersCommand}">Add Sample Users</Button>
                 </StackPanel>
                 <ItemsControl Grid.Column="2" Grid.Row="0"
-                    ItemsSource="{Binding DataContext.Items, ElementName=UsersViewMainGrid}">
+                    ItemsSource="{Binding DataContext.UserItems, ElementName=UsersViewMainGrid}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" >

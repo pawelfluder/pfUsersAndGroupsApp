@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleAssignments", "Module
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pfUsersAndGroupsTests", "pfUsersAndGroupsTests\pfUsersAndGroupsTests.csproj", "{74B7F78C-294E-4DB0-9026-D205A3977A16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModelsWpfLibrary", "ViewModelsWpfLibrary\ViewModelsWpfLibrary.csproj", "{81ED9823-72C6-4380-9969-9303C5E71CB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{74B7F78C-294E-4DB0-9026-D205A3977A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74B7F78C-294E-4DB0-9026-D205A3977A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74B7F78C-294E-4DB0-9026-D205A3977A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81ED9823-72C6-4380-9969-9303C5E71CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81ED9823-72C6-4380-9969-9303C5E71CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81ED9823-72C6-4380-9969-9303C5E71CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81ED9823-72C6-4380-9969-9303C5E71CB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

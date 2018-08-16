@@ -39,17 +39,17 @@ namespace DALEntityframework
         {
             foreach (UserItem userItem in userItems)
             {
-                userItem.AddAssignmentIds(userIdAndAssignId.Where(a => a.UserId == userItem.Id).ToList());
+                userItem.AddAssignments(userIdAndAssignId.Where(a => a.UserId == userItem.Id).ToList());
             }
         }
 
-        public void AddUser(string FullName, string Email)
+        public void AddUser(Guid id, string FullName, string Email)
         {
             bool userExistsInDb = _db.Users.Any(u => u.FullName == FullName && u.Email == Email);
 
             if (userExistsInDb == false)
             {
-                _db.Users.Add(new User() { Id = Guid.NewGuid(), FullName = FullName, Email = Email });
+                _db.Users.Add(new User() { Id = id, FullName = FullName, Email = Email });
                 _db.SaveChanges();
             }
         }
@@ -133,14 +133,14 @@ namespace DALEntityframework
             return new List<AssignmentItem>();
         }
 
-        public void AddAssignment(Guid groupGuid, Guid userId)
+        public void AddAssignment(AssignmentItem assignmentItem)
         {
-            List<User> foundUserIds = _db.Users.Where(u => u.Id == userId).ToList();
-            List<Group> foundGoupIds = _db.Groups.Where(g => g.Id == groupGuid).ToList();
+            List<User> foundUserIds = _db.Users.Where(u => u.Id == assignmentItem.UserId).ToList();
+            List<Group> foundGoupIds = _db.Groups.Where(g => g.Id == assignmentItem.GroupId).ToList();
 
             if (foundUserIds.Any() && foundGoupIds.Any())
             {
-                _db.Assignments.Add(new Assignment() { Id = Guid.NewGuid(), UserId = userId, GroupId = groupGuid });
+                _db.Assignments.Add(new Assignment() { Id = assignmentItem.Id, UserId = assignmentItem.UserId, GroupId = assignmentItem.GroupId });
                 _db.SaveChanges();
             }
         }

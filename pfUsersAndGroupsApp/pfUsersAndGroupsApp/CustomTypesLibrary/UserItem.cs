@@ -42,12 +42,12 @@ namespace CustomTypesLibrary
             };
         }
 
-        public void AddAssignmentId(AssignmentItem assignmentItem)
+        public void AddAssignment(AssignmentItem assignmentItem)
         {
             AssignmentIds.Add(assignmentItem);
         }
 
-        public void AddAssignmentIds(List<AssignmentItem> assignmentItems)
+        public void AddAssignments(List<AssignmentItem> assignmentItems)
         {
             AssignmentIds.AddRange(assignmentItems);
         }
