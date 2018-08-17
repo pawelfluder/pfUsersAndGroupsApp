@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using ViewModelsWpfLibrary.ViewModels;
+using ViewModelsWpfLibrary;
 
 namespace ModuleUsers.Views
 {
@@ -8,7 +8,7 @@ namespace ModuleUsers.Views
         public UsersView()
         {
             InitializeComponent();
-            DataContext = new GeneralViewModel();
+            DataContext = Singleton.GetInstance().GeneralViewModel;
         }
     }
 }

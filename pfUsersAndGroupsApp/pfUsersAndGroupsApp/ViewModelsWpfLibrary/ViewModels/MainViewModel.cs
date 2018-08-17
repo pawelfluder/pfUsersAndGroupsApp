@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using CustomTypesLibrary;
@@ -19,14 +20,24 @@ namespace ViewModelsWpfLibrary.ViewModels
 
         public ObservableCollection<GroupItem> GroupItems
         {
-            get { return new ObservableCollection<GroupItem>(GroupsContainer.GroupUsersItems.Select(i => i.GroupItem)); }
+            get
+            {
+                IEnumerable<GroupItem> groupItem = new List<GroupItem>() {GroupsContainer.GetUnassignedGroupItem()};
+                return new ObservableCollection<GroupItem>(GroupsContainer.GroupUsersItems.Select(i => i.GroupItem).Except(groupItem));
+            }
         }
 
         public GeneralViewModel()
         {
+            _dbManager = new DbManager();
+            GroupsContainer = new GroupContainer();
             UpdateGroupContainer();
+            OnPropertyChanged("GroupUsersItems");
+            OnPropertyChanged("UserItems");
+            OnPropertyChanged("GroupItems");
 
             UsersCtor();
+            GroupsCtor();
             AssignmentsCtor();
         }
 

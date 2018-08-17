@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using ModuleGroups.ViewModel;
+using ViewModelsWpfLibrary;
 
 namespace ModuleGroups.Views
 {
@@ -8,7 +8,7 @@ namespace ModuleGroups.Views
         public GroupsView()
         {
             InitializeComponent();
-            DataContext = new GroupsViewModel();
+            DataContext = Singleton.GetInstance().GeneralViewModel;
         }
     }
 }

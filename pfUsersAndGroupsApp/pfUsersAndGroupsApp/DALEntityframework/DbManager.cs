@@ -86,13 +86,13 @@ namespace DALEntityframework
             return new List<GroupItem>();
         }
 
-        public void AddGroup(string groupName)
+        public void AddGroup(GroupItem groupItem)
         {
-            bool groupExistsInDb = _db.Groups.Any(u => u.GroupName == groupName);
+            bool groupExistsInDb = _db.Groups.Any(u => u.GroupName == groupItem.GroupName);
 
             if (groupExistsInDb == false)
             {
-                _db.Groups.Add(new Group() {Id = Guid.NewGuid(), GroupName = groupName});
+                _db.Groups.Add(new Group() {Id = groupItem.Id, GroupName = groupItem.GroupName});
                 _db.SaveChanges();
             }
         }

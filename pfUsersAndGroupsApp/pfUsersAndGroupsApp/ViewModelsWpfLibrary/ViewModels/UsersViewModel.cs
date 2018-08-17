@@ -87,7 +87,6 @@ namespace ViewModelsWpfLibrary.ViewModels
             }
 
             UpdateUsersView();
-            ClearUsersForm();
         }
 
         private void ClearUsersForm()

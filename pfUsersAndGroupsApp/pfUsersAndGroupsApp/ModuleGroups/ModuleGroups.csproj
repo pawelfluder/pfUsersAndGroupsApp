@@ -74,7 +74,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModel\GroupsViewModel.cs" />
     <Compile Include="Views\GroupsView.xaml.cs">
       <DependentUpon>GroupsView.xaml</DependentUpon>
     </Compile>
@@ -104,6 +103,10 @@
     <ProjectReference Include="..\DALEntityframework\DALEntityframework.csproj">
       <Project>{d465a2f6-3e0b-4999-9b1a-edeb8a0320ce}</Project>
       <Name>DALEntityframework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModelsWpfLibrary\ViewModelsWpfLibrary.csproj">
+      <Project>{81ed9823-72c6-4380-9969-9303c5e71cb0}</Project>
+      <Name>ViewModelsWpfLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

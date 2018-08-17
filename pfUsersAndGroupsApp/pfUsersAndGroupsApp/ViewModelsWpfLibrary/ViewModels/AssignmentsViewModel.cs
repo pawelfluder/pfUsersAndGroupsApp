@@ -19,9 +19,6 @@ namespace ViewModelsWpfLibrary.ViewModels
 
         private void AssignmentsCtor()
         {
-            _dbManager = new DbManager();
-            GroupsContainer = new GroupContainer();
-
             AddAssignmentCommand = new RelayCommand(AddAssignmentMethod);
             RemoveAssignmentCommand = new RelayCommand(RemoveAssignmentMethod);
         }
